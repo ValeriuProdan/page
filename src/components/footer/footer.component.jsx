@@ -18,7 +18,7 @@ const Footer = () => {
           marginTop: "10px",
         }}
       >
-        A Webpage made by Valeriu Prodan!
+        A Webpage made by Valeriu Prodan.
       </h1>
       <FooterContainer>
         <Row>
