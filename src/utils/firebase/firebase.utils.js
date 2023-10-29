@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithRedirect,
@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from 'firebase/auth';
+} from "firebase/auth";
 import {
   getFirestore,
   doc,
@@ -18,7 +18,7 @@ import {
   writeBatch,
   query,
   getDocs,
-} from 'firebase/firestore';
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDO9oJVtGG_nPcKmic91teP3Dc73EHu0cw",
@@ -26,7 +26,7 @@ const firebaseConfig = {
   projectId: "webpage-5a874",
   storageBucket: "webpage-5a874.appspot.com",
   messagingSenderId: "993447980166",
-  appId: "1:993447980166:web:b4b3e6e2ca17461fea7507"
+  appId: "1:993447980166:web:b4b3e6e2ca17461fea7507",
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -34,7 +34,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
-  prompt: 'select_account',
+  prompt: "select_account",
 });
 
 export const auth = getAuth();
@@ -53,27 +53,27 @@ export const addCollectionAndDocuments = async (
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
 
-  objectsToAdd.forEach((object) => {
-    const docRef = doc(collectionRef, object.title.toLowerCase());
+  objectsToAdd.forEach((object, index) => {
+    const stringIndex = "" + index;
+    const docRef = doc(collectionRef, stringIndex);
     batch.set(docRef, object);
   });
 
   await batch.commit();
-  console.log('done');
+  console.log("done");
 };
 
-export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, 'categories');
+export const getDocuments = async (collectionName) => {
+  const collectionRef = collection(db, collectionName);
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
+  const documentsMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    acc[docSnapshot.id] = docSnapshot.data();
     return acc;
   }, {});
 
-  return categoryMap;
+  return documentsMap;
 };
 
 export const createUserDocumentFromAuth = async (
@@ -82,7 +82,7 @@ export const createUserDocumentFromAuth = async (
 ) => {
   if (!userAuth) return;
 
-  const userDocRef = doc(db, 'users', userAuth.uid);
+  const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -98,7 +98,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log('error creating the user', error.message);
+      console.log("error creating the user", error.message);
     }
   }
 

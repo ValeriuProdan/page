@@ -23,8 +23,14 @@ const Footer = () => {
       <FooterContainer>
         <Row>
           <Column>
-            <Heading>Webside</Heading>
+            <Heading>Webside code and credits</Heading>
             <FooterLink href="#">Code</FooterLink>
+            <FooterLink href="https://www.udemy.com/course/complete-react-developer-zero-to-mastery/">
+              Udemy Tutorial
+            </FooterLink>
+            <FooterLink href="https://react-photo-view.vercel.app/en-US">
+              react-photo-view
+            </FooterLink>
           </Column>
           <Column>
             <Heading>Contact</Heading>
