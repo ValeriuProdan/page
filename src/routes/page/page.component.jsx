@@ -2,7 +2,7 @@ import Footer from "../../components/footer/footer.component";
 import Navigation from "../../components/navigation/navigation.component";
 import { PageContainer } from "./page.styles";
 
-const Body = () => {
+const Page = () => {
   return (
     <PageContainer>
       <Navigation />
@@ -11,4 +11,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default Page;

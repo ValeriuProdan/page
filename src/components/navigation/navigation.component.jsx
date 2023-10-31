@@ -21,6 +21,7 @@ const Navigation = () => {
           <h2>Navigation</h2>
         </div>
         <NavLinks>
+          <NavLink to="/profesional">MY CAREER</NavLink>
           <NavLink to="/pictures">PICTURES</NavLink>
           {currentUser ? (
             <NavLink as="span" onClick={signOutUser}>
