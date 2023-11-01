@@ -8,17 +8,43 @@ import {
   Heading,
 } from "./footer.styles";
 
+import { useState } from "react";
+
+const defaultFields = {
+  clicks: 0,
+};
+
 const Footer = () => {
+  const [fields, setFields] = useState(defaultFields);
+
+  const surprizeOnClickHandle = () => {
+    if (fields.clicks === 0) {
+      alert("You expected something more, right? Try clicking again! 😉");
+      setFields({ ...fields, clicks: fields.clicks + 1 });
+    } else if (fields.clicks === 1) {
+      alert("Great work, keep going!");
+      setFields({ ...fields, clicks: fields.clicks + 1 });
+    } else if (fields.clicks === 6) {
+      alert("Really? R u gonna stop? 🙄");
+      setFields({ ...fields, clicks: fields.clicks + 1 });
+    } else {
+      const x = fields.clicks;
+      alert("You pressed it " + x + " times.");
+      setFields({ ...fields, clicks: fields.clicks + 1 });
+    }
+  };
+
   return (
     <Box>
       <h1
         style={{
-          color: "green",
+          color: "#6e7175",
           textAlign: "center",
           marginTop: "10px",
+          fontSize: "30px",
         }}
       >
-        A Webpage made by Valeriu Prodan.
+        A webpage made by Valeriu Prodan.
       </h1>
       <FooterContainer>
         <Row>
@@ -59,8 +85,8 @@ const Footer = () => {
             </FooterLink>
           </Column>
           <Column>
-            <Heading>Surpize</Heading>
-            <FooterLink href="#">Click me!</FooterLink>
+            <Heading>Surprize</Heading>
+            <FooterLink onClick={surprizeOnClickHandle}>Click me!</FooterLink>
           </Column>
         </Row>
       </FooterContainer>

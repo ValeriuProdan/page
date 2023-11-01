@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { Outlet } from "react-router-dom";
 
 import {
@@ -15,11 +15,10 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <BodyContainer>
+    <Fragment>
       <NavigationContainer>
-        <div>
-          <h2>Navigation</h2>
-        </div>
+        <NavLink to="/">HOME</NavLink>
+
         <NavLinks>
           <NavLink to="/profesional">MY CAREER</NavLink>
           <NavLink to="/pictures">PICTURES</NavLink>
@@ -32,9 +31,10 @@ const Navigation = () => {
           )}
         </NavLinks>
       </NavigationContainer>
-
-      <Outlet />
-    </BodyContainer>
+      <BodyContainer>
+        <Outlet />
+      </BodyContainer>
+    </Fragment>
   );
 };
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Box = styled.div`
     margin-top: auto;
 
-    background: black;
+    background: #303134;
     //position: absolute;
     bottom: 0;
     width: 100%;
@@ -18,7 +18,7 @@ export const FooterContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 1000px;
+    max-width: 1600px;
     margin: 0 auto;
     /* background: red; */
 `;
@@ -26,15 +26,14 @@ export const FooterContainer = styled.div`
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
-    text-align: left;
-    margin-left: 60px;
+    text-align: center;
 `;
  
 export const Row = styled.div`
     display: grid;
     grid-template-columns: repeat(
         auto-fill,
-        minmax(185px, 1fr)
+        minmax(385px, 1fr)
     );
     grid-gap: 20px;
  
@@ -53,7 +52,7 @@ export const FooterLink = styled.a`
     text-decoration: none;
  
     &:hover {
-        color: green;
+        color: #6e7175;
         transition: 200ms ease-in;
     }
 `;
