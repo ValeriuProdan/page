@@ -3,6 +3,7 @@ import GoogleLogo from "../../assets/GoogleLogo.png";
 import MicrosoftLogo from "../../assets/MicrosoftLogo.png";
 import AmiqLogo from "../../assets/AmiqLogo.png";
 import FourPSALogo from "../../assets/4PSALogo.png";
+import VPLogo from "../../assets/VPLogo.jfif";
 
 var JOBS_DATA = [
   {
@@ -54,7 +55,6 @@ var JOBS_DATA = [
     Company: "4PSA",
     Logo: FourPSALogo,
     LogoToLink: "https://www.4psa.com/",
-    
     Title: "Software Engineer",
     Duration: "Oct 2018 - Jan 2019",
     Details: [
@@ -63,6 +63,8 @@ var JOBS_DATA = [
   },
   {
     Company: "Freelance",
+    Logo: VPLogo,
+    LogoToLink: "/",
     Title: "Web and App Developer",
     Duration: "Oct 2013 - Sep 2016",
     Details: [

@@ -11,9 +11,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Page />}>
         <Route index element={<Home />} />
-        <Route path='auth' element={<Authentication />} />
-        <Route path='pictures' element={<Pictures />} />
-        <Route path='profesional' element={<Resume />} />
+        <Route path="auth" element={<Authentication />} />
+        <Route path="pictures" element={<Pictures />} />
+        <Route path="profesional" element={<Resume />} />
       </Route>
     </Routes>
   );

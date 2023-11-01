@@ -12,24 +12,26 @@ const Pictures = () => {
     <div>
       <h2>
         These pictues are made by me, most of them with my phone. Hope you enjoy
-        them
+        them!
       </h2>
       <PhotoProvider>
         <div>
-          {Object.keys(picturesMap).sort().map((id) => {
-            const { imageUrl } = picturesMap[id];
-            return (
-              <Fragment>
-                <PhotoView key={id} src={imageUrl}>
-                  <img
-                    src={imageUrl}
-                    style={{ height: 400, margin: 10 }}
-                    alt=""
-                  />
-                </PhotoView>
-              </Fragment>
-            );
-          })}
+          {Object.keys(picturesMap)
+            .sort()
+            .map((id) => {
+              const { imageUrl } = picturesMap[id];
+              return (
+                <Fragment>
+                  <PhotoView key={id} src={imageUrl}>
+                    <img
+                      src={imageUrl}
+                      style={{ height: 400, margin: 5, borderRadius: 10 }}
+                      alt={id}
+                    />
+                  </PhotoView>
+                </Fragment>
+              );
+            })}
         </div>
       </PhotoProvider>
     </div>
