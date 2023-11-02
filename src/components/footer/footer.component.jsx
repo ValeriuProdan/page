@@ -50,7 +50,7 @@ const Footer = () => {
         <Row>
           <Column>
             <Heading>Webside code and credits</Heading>
-            <FooterLink href="#">Code</FooterLink>
+            <FooterLink href="https://github.com/ValeriuProdan/page">Code</FooterLink>
             <FooterLink href="https://www.udemy.com/course/complete-react-developer-zero-to-mastery/">
               Udemy Tutorial
             </FooterLink>
