@@ -8,7 +8,7 @@ const Home = () => {
       <Box>
         <img
           src={ValeriuPicture}
-          style={{ width: 300, borderRadius: 20 }}
+          style={{ width: 300, height: 400, borderRadius: 20 }}
           alt="Profile"
         />
         <Text>
