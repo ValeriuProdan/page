@@ -17,7 +17,7 @@ export const JobContainer = styled.div`
   margin: 10px 0px;
   padding: 10px 0px;
   font-size: 20px;
-  max-width: 850px;
+  max-width: 900px;
   border-radius: 20px;
   background: #b5b5b5;
 `;
