@@ -25,7 +25,7 @@ const Pictures = () => {
                   <PhotoView key={id} src={imageUrl}>
                     <img
                       src={imageUrl}
-                      style={{ height: 400, margin: 5, borderRadius: 10 }}
+                      style={{maxHeight: '20vw',  margin: '0.3vw', borderRadius: '1.5vw' }}
                       alt={id}
                     />
                   </PhotoView>
