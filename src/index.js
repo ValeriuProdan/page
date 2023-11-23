@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
 import { PicturesProvider } from "./contexts/pictures.context";
+import { RealEstateProvider } from "./contexts/real-estate.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <PicturesProvider>
-          <App />
+          <RealEstateProvider>
+            <App />
+          </RealEstateProvider>
         </PicturesProvider>
       </UserProvider>
     </BrowserRouter>
