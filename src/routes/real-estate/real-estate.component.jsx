@@ -9,13 +9,16 @@ import {
   SettingContainer,
 } from "./real-estate.styles";
 
-const getData = (realEstateMap) => {
+const getVanzariData = (realEstateMap) => {
   const filteredData = {};
 
   for (const county in realEstateMap) {
     const countyResult = {};
 
     for (const year in realEstateMap[county]) {
+      if (parseInt(year) < 2017) {
+        continue;
+      }
       for (const month in realEstateMap[county][year]) {
         const date = "" + year + "-" + month;
         countyResult[date] =
@@ -24,11 +27,11 @@ const getData = (realEstateMap) => {
     }
     const countyResultSorted = {};
 
-    const x = Object.keys(countyResult);
-    x.sort();
+    const sortedDates = Object.keys(countyResult);
+    sortedDates.sort();
 
-    x.forEach((value) => {
-      countyResultSorted[value] = countyResult[value];
+    sortedDates.forEach((date) => {
+      countyResultSorted[date] = countyResult[date];
     });
 
     const name = county;
@@ -55,11 +58,11 @@ const getFilteredData = (realEstateMap, checkedCities, checkedValues) => {
         }
         const countyResultSorted = {};
 
-        const x = Object.keys(countyResult);
-        x.sort();
+        const sortedDates = Object.keys(countyResult);
+        sortedDates.sort();
 
-        x.forEach((value) => {
-          countyResultSorted[value] = countyResult[value];
+        sortedDates.forEach((date) => {
+          countyResultSorted[date] = countyResult[date];
         });
 
         const name = county + " " + value;
@@ -87,11 +90,11 @@ const getYearlyFilteredData = (realEstateMap, checkedCities, checkedValues) => {
 
           const countyResultSorted = {};
 
-          const x = Object.keys(countyResult);
-          x.sort();
+          const sortedDates = Object.keys(countyResult);
+          sortedDates.sort();
 
-          x.forEach((value) => {
-            countyResultSorted[value] = countyResult[value];
+          sortedDates.forEach((date) => {
+            countyResultSorted[date] = countyResult[date];
           });
 
           const name = county + " " + year + " " + value;
@@ -142,7 +145,7 @@ const RealEstate = () => {
     }));
   };
 
-  const data = getData(realEstateMap);
+  const data = getVanzariData(realEstateMap);
 
   const filteredData = getFilteredData(
     realEstateMap,
@@ -158,6 +161,11 @@ const RealEstate = () => {
 
   return (
     <div>
+      <h3 style={{ margin: "0px 20px" }}>
+        Grafice bazate pe datele extrase de pe siteul{" "}
+        <a href="https://www.ancpi.ro/statistici">ANCPI</a>
+      </h3>
+
       <MultiLineChart
         data={data}
         title="UnitatiIndividuale per Judet"
@@ -166,7 +174,8 @@ const RealEstate = () => {
       />
       <h3 style={{ margin: "0px 20px" }}>
         Alege cel putin un judet si un tip de proprietate pentru graficele de
-        dedesubt. (Bucuresti este separat de Ilfov).
+        dedesubt. (Bucuresti este separat de Ilfov). Inainte de 2017 doar
+        numarul total de proprietati este raportat.
       </h3>
       <SettingsContainer>
         <SettingContainer>
@@ -224,7 +233,7 @@ const RealEstate = () => {
 
       <MultiLineChart
         data={yearlyFilteredData}
-        title="Grupare pe Judet, Tip proprietate, An "
+        title="Grupare pe Judet, Tip proprietate si An "
         xName="Luna"
         yName="Valoare"
       />
