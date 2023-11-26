@@ -52,8 +52,10 @@ const getFilteredData = (realEstateMap, checkedCities, checkedValues) => {
         for (const year in realEstateMap[county]) {
           for (const month in realEstateMap[county][year]) {
             const date = "" + year + "-" + month;
-            countyResult[date] =
-              realEstateMap[county][year][month]["vanzari"][value];
+            if (realEstateMap[county][year][month]["vanzari"][value]) {
+              countyResult[date] =
+                realEstateMap[county][year][month]["vanzari"][value];
+            }
           }
         }
         const countyResultSorted = {};
@@ -84,8 +86,10 @@ const getYearlyFilteredData = (realEstateMap, checkedCities, checkedValues) => {
           const countyResult = {};
           for (const month in realEstateMap[county][year]) {
             const monthNum = Number(month);
-            countyResult[monthNum] =
-              realEstateMap[county][year][month]["vanzari"][value];
+            if (realEstateMap[county][year][month]["vanzari"][value]) {
+              countyResult[monthNum] =
+                realEstateMap[county][year][month]["vanzari"][value];
+            }
           }
 
           const countyResultSorted = {};
