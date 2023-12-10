@@ -11,7 +11,7 @@ export const PicturesProvider = ({ children }) => {
 
   useEffect(() => {
     const getPicturesMap = async () => {
-      const result = await getDocuments("pictures");
+      const result = await getDocuments("compressed_pictures");
 
       setPicturesMap(result);
     };
