@@ -27,6 +27,7 @@ const Pictures = () => {
                       src={imageUrl}
                       style={{maxHeight: '20vw',  margin: '0.3vw', borderRadius: '1.5vw' }}
                       alt={id}
+                      loading="lazy"
                     />
                   </PhotoView>
                 </Fragment>
