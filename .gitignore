@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnp.cjs
+.yarn/install-state.gz
+.yarn/releases/yarn-4.5.3.cjs

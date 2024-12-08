@@ -1,34 +1,36 @@
 {
   "name": "page",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "firebase": "^10.5.0",
-    "plotly.js": "^2.27.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-photo-view": "^1.2.3",
-    "react-plotly.js": "^2.6.0",
-    "react-router-dom": "^6.17.0",
-    "react-scripts": "5.0.1",
-    "sass": "^1.69.4",
-    "styled-components": "^6.1.0",
-    "web-vitals": "^2.1.0"
-  },
+  "version": "1.0.0",
+  "description": "Personal webpage for Valeriu Prodan",
+  "main": "index.js",
+  "repository": "https://github.com/ValeriuProdan/page.git",
+  "author": "Valeriu Prodan <prodan.valeriu96@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/plugin-syntax-flow": "^7.26.0",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "firebase": "^11.0.2",
+    "mapbox-gl": "1.13.0",
+    "nvm": "^0.0.4",
+    "plotly.js": "^2.35.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-photo-view": "^1.2.6",
+    "react-plotly.js": "^2.6.0",
+    "react-router-dom": "6",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.82.0",
+    "styled-components": "^6.1.13",
+    "typescript": "^5.7.2",
+    "web-vitals": "^4.2.4",
+    "webpack": "^5.97.1"
   },
   "browserslist": {
     "production": [
