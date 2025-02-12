@@ -16,17 +16,14 @@ const Pictures = () => {
       </h2>
       <PhotoProvider>
         <div>
-          {Object.keys(picturesMap)
-            .sort()
-            .map((id) => {
-              const { imageUrl } = picturesMap[id];
+          {Object.values(picturesMap)
+            .map((imageUrl) => {
               return (
                 <Fragment>
-                  <PhotoView key={id} src={imageUrl}>
+                  <PhotoView src={imageUrl}>
                     <img
                       src={imageUrl}
                       style={{maxHeight: '20vw',  margin: '0.3vw', borderRadius: '1.5vw' }}
-                      alt={id}
                       loading="lazy"
                     />
                   </PhotoView>
