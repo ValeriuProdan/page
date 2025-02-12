@@ -19,9 +19,13 @@ import {
   query,
   getDocs,
 } from "firebase/firestore";
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 import { firebaseConfig } from "./firebase_credentials";
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+const storage = getStorage(app);
+export const db = getFirestore();
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -29,13 +33,24 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
-export const db = getFirestore();
+export const getImageUrlsFromStorage = async () => {
+  try {
+    const imagesRef = ref(storage, `images/`); // Reference to the folder
+    const imageList = await listAll(imagesRef); // Get list of files
+    const urls = await Promise.all(
+      imageList.items.map(async (item) => await getDownloadURL(item))
+    );
+    return urls; // Return the array of URLs
+  } catch (error) {
+    console.error("Error fetching images:", error);
+    return [];
+  }
+};
 
 export const addCollectionAndDocuments = async (
   collectionKey,

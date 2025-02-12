@@ -1,19 +1,19 @@
 import { createContext, useState, useEffect } from "react";
 
-import { getDocuments } from "../utils/firebase/firebase.utils";
+import { getDocuments, getImageUrlsFromStorage } from "../utils/firebase/firebase.utils";
 
 export const PicturesContext = createContext({
   picturesMap: {},
 });
 
 export const PicturesProvider = ({ children }) => {
-  const [picturesMap, setPicturesMap] = useState({});
+  const [picturesMap, setPicturesMap] = useState([]);
 
   useEffect(() => {
     const getPicturesMap = async () => {
-      const result = await getDocuments("compressed_pictures");
+      const imagesUrls = await getImageUrlsFromStorage();
 
-      setPicturesMap(result);
+      setPicturesMap(imagesUrls);
     };
 
     getPicturesMap();
