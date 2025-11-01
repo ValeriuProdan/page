@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import ValeriuPicture from "../../assets/ValeriuPicture.jpg";
-import { HomeContainer, Box, Text, ProfileImageContainer } from "./home.styles";
+import { HomeContainer, Box, Text, ProfileImageContainer, Tagline } from "./home.styles";
 
 const Home = () => {
   return (
@@ -13,17 +13,18 @@ const Home = () => {
           />
         </ProfileImageContainer>
         <Text>
+          <Tagline>
+            I help companies transform ideas into successful products.
+          </Tagline>
           <p>
-            Hello! I am a software engineer at Google, where I work on the
-            YouTube ads team (a.k.a., "the guys flooding you with ads that you
-            hate" - unless you have premium, in which case you are not
-            contributing to my salary 😞).
+            Hello! I'm an AI/ML Engineer at Google, where I work on Search Shopping, 
+            building innovative solutions that enhance user experiences. Previously, I worked 
+            on YouTube Ads, developing features that generated significant business impact.
           </p>
           <p>
-            The point of this webpage is to have a playground for implementing
-            stuff I learn from tutorials and create a way for people to get to
-            know me. Here you can explore my work, see some of my photography,
-            and learn about my professional journey.
+            This webpage serves as a playground for exploring new technologies and a way 
+            for people to get to know me. Here you can explore my professional journey, 
+            see some of my photography, and learn about the projects I've worked on.
           </p>
         </Text>
       </Box>

@@ -83,3 +83,36 @@ export const Heading = styled.p`
     letter-spacing: 1px;
     font-size: 16px;
 `;
+
+export const IconContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+`;
+
+export const IconLink = styled.a`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    &:hover {
+        background: rgba(66, 153, 225, 0.2);
+        color: #4299e1;
+        transform: translateY(-2px) scale(1.1);
+    }
+    
+    svg {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+    }
+`;

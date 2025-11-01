@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
 import {
@@ -8,27 +8,15 @@ import {
   BodyContainer,
 } from "./navigation.styles";
 
-import { UserContext } from "../../contexts/user.context";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
-
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-
   return (
     <Fragment>
       <NavigationContainer>
         <NavLink to="/">HOME</NavLink>
 
         <NavLinks>
-          <NavLink to="/profesional">MY CAREER</NavLink>
+          <NavLink to="/profesional">EXPERIENCE</NavLink>
           <NavLink to="/pictures">PICTURES</NavLink>
-          {currentUser ? (
-            <NavLink as="span" onClick={signOutUser}>
-              SIGN OUT
-            </NavLink>
-          ) : (
-            <NavLink to="/auth">SIGN IN</NavLink>
-          )}
         </NavLinks>
       </NavigationContainer>
       <BodyContainer>

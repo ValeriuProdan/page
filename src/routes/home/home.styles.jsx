@@ -73,3 +73,35 @@ export const Text = styled.div`
     padding: 0;
   }
 `;
+
+export const Tagline = styled.p`
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #1a202c;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  position: relative;
+  padding-bottom: 16px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #4299e1 0%, #3182ce 100%);
+    border-radius: 2px;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 26px;
+    text-align: center;
+    
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+`;
