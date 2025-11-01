@@ -3,31 +3,30 @@ import styled from "styled-components";
 export const PicturesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 60px 40px;
+  padding: 100px 48px 80px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
-  min-height: calc(100vh - 80px);
-  background: transparent;
+  min-height: calc(100vh - 72px);
+  background: var(--color-bg);
 
   @media (max-width: 768px) {
-    padding: 40px 20px;
+    padding: 80px 24px 60px;
   }
 `;
 
 export const PicturesTitle = styled.h2`
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 50px;
-  color: #1a202c;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  margin-bottom: 64px;
+  color: var(--color-text);
   text-align: center;
-  line-height: 1.4;
-  letter-spacing: -0.5px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 
   @media (max-width: 768px) {
-    font-size: 28px;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
   }
 `;
 
@@ -59,15 +58,19 @@ export const PictureItem = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-  background: #f0f0f0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
   grid-row-end: span ${props => props.span || 30};
   
   &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.08),
+      0 32px 64px rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.3);
     z-index: 1;
   }
 `;

@@ -9,23 +9,23 @@ export const BodyContainer = styled.div`
 `;
 
 export const NavigationContainer = styled.nav`
-  height: 80px;
+  height: 72px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  padding: 0 48px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
 
   @media (max-width: 768px) {
-    height: 70px;
-    padding: 0 20px;
+    height: 64px;
+    padding: 0 24px;
   }
 `;
 
@@ -46,28 +46,27 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled(Link)`
-  padding: 12px 20px;
+  padding: 10px 20px;
   cursor: pointer;
-  color: #2d3748;
+  color: var(--color-text);
   font-weight: 500;
   font-size: 15px;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 
   &:hover {
-    color: #4299e1;
-    background: rgba(66, 153, 225, 0.1);
-    transform: translateY(-1px);
+    color: var(--color-primary);
+    background: rgba(99, 102, 241, 0.08);
   }
 
   &.active {
-    color: #4299e1;
-    background: rgba(66, 153, 225, 0.15);
+    color: var(--color-primary);
+    background: rgba(99, 102, 241, 0.1);
   }
 
   @media (max-width: 768px) {
-    padding: 10px 12px;
-    font-size: 13px;
+    padding: 8px 16px;
+    font-size: 14px;
   }
 `;

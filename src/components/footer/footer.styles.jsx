@@ -2,13 +2,13 @@ import styled from "styled-components";
  
 export const Box = styled.div`
     margin-top: auto;
-    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    background: var(--color-text);
     width: 100%;
-    padding: 60px 40px 40px;
+    padding: 80px 48px 60px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
  
     @media (max-width: 768px) {
-        padding: 40px 20px 30px;
+        padding: 60px 24px 48px;
     }
 `;
  
@@ -21,16 +21,15 @@ export const FooterContainer = styled.div`
 `;
  
 export const FooterTitle = styled.h1`
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.95);
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 28px;
-    font-weight: 600;
-    opacity: 0.95;
+    margin-bottom: 48px;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        font-size: 24px;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
 `;
  
@@ -61,15 +60,15 @@ export const Row = styled.div`
 `;
  
 export const FooterLink = styled.a`
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.75);
     margin-bottom: 16px;
     font-size: 16px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
  
     &:hover {
-        color: #4299e1;
+        color: #818cf8;
         transform: translateX(4px);
     }
 `;
@@ -99,15 +98,17 @@ export const IconLink = styled.a`
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     
     &:hover {
-        background: rgba(66, 153, 225, 0.2);
-        color: #4299e1;
-        transform: translateY(-2px) scale(1.1);
+        background: rgba(129, 140, 248, 0.2);
+        color: #818cf8;
+        transform: translateY(-4px) scale(1.1);
+        border-color: rgba(129, 140, 248, 0.4);
     }
     
     svg {
