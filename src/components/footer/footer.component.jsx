@@ -6,6 +6,7 @@ import {
   Column,
   FooterLink,
   Heading,
+  FooterTitle,
 } from "./footer.styles";
 
 import { useState } from "react";
@@ -36,16 +37,7 @@ const Footer = () => {
 
   return (
     <Box>
-      <h1
-        style={{
-          color: "#6e7175",
-          textAlign: "center",
-          marginTop: "10px",
-          fontSize: "30px",
-        }}
-      >
-        A webpage made by Valeriu Prodan.
-      </h1>
+      <FooterTitle>A webpage made by Valeriu Prodan</FooterTitle>
       <FooterContainer>
         <Row>
           <Column>

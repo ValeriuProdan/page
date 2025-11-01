@@ -3,20 +3,32 @@ import styled from "styled-components";
 export const PicturesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 40px 20px;
+  padding: 60px 40px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  min-height: calc(100vh - 80px);
+  background: transparent;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
 `;
 
 export const PicturesTitle = styled.h2`
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 40px;
-  color: #333;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  color: #1a202c;
   text-align: center;
   line-height: 1.4;
+  letter-spacing: -0.5px;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const PicturesGrid = styled.div`
