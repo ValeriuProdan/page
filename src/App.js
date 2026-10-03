@@ -1,25 +1,83 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import portrait from './assets/ValeriuPicture.jpg';
+import Gallery from './Gallery';
+import galleryFiles from './photos.json';
+import './portfolio.css';
 
-import Page from "./routes/page/page.component";
-import Home from "./routes/home/home.component";
-import Authentication from "./routes/authentication/authentication.component";
-import Pictures from "./routes/pictures/pictures.component";
-import Resume from "./routes/resume/resume.component";
-import RealEstate from "./routes/real-estate/real-estate.component";
-
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Page />}>
-        <Route index element={<Home />} />
-        <Route path="auth" element={<Authentication />} />
-        <Route path="pictures" element={<Pictures />} />
-        <Route path="profesional" element={<Resume />} />
-        <Route path="real-estate" element={<RealEstate />} />
-        
-      </Route>
-    </Routes>
-  );
+const linkedin = 'https://www.linkedin.com/in/valeriu-prodan-294103159';
+const github = 'https://github.com/ValeriuProdan';
+function systemTheme() {
+  try {
+    if (typeof window.matchMedia !== 'function') return 'dark';
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+  } catch {}
+  return 'dark';
 }
-
+function savedTheme() {
+  try {
+    const value = localStorage.getItem('vp-theme');
+    return ['light', 'dark'].includes(value) ? value : null;
+  } catch { return null; }
+}
+const jobs = [
+  {company:'Google', date:'Feb 2022 — Apr 2026', place:'Zürich', role:'AI/ML Engineer & Software Engineer', detail:'From YouTube advertising systems to Google Search Shopping. Building products where model quality, latency, and business impact meet.', points:['Built a RAG system for LLM-generated shopping summaries in AI Overviews.', 'Trained and launched a LoRA adapter that reduced TPU consumption by 48%.', 'Developed a product selection layer that met strict real-time latency requirements.', 'Implemented, validated, and launched YouTube Target Frequency: $200M+ revenue in 2023 and $0.5B in 2024.', 'Introduced Reserve Target Frequency, generating $15M in its first year.'], tech:'C++ · Python · SQL · RAG · LoRA'},
+  {company:'UiPath', date:'Jul 2020 — Feb 2022', place:'Bucharest', role:'Software Engineer', detail:'Making automation more useful, reliable, and easier to build.', points:['Led the system activities package and guided a team of three.', 'Built workflow rule checkers to identify errors before publishing.', 'Delivered features that saved customers over 1,000 hours of manual work per month.'], tech:'C# · WPF · Workflow analysis'},
+  {company:'Microsoft', date:'Apr — Jun 2020', place:'Bucharest', role:'Technical Engineering Intern', detail:'Helped Teams customers resolve technical issues during the rapid growth of remote work.', tech:'Microsoft Teams · Technical troubleshooting'},
+  {company:'AMIQ Consulting', date:'Jul 2019 — Apr 2020', place:'Bucharest', role:'Software Engineer', detail:'Built regression analytics dashboards from scratch and authored scenarios to test autonomous vehicle behaviour.', tech:'Python · Elasticsearch · Kibana · M-SDL'},
+  {company:'4PSA', date:'Oct 2018 — Jan 2019', place:'Bucharest', role:'Part-time Software Engineer', detail:'Modernised legacy C functions with stream-based I/O to reduce inter-process communication overhead.', tech:'C · Systems programming'},
+  {company:'Freelance', date:'Oct 2013 — Sep 2016', place:'Bucharest', role:'Web & App Developer', detail:'Built dashboards and integrated payment dialogs for a US loan management software company.', tech:'C# · Web applications · Windows applications'},
+];
+const projects = [
+  {n:'01',type:'NATURAL LANGUAGE PROCESSING',title:'A chatbot that takes reservations.',text:'A BERT-based network that lets people make dinner reservations through conversation.',tags:'BERT / NLP / 2020'},
+  {n:'02',type:'COMPUTER VISION',title:'Understanding images, pixel by pixel.',text:'Car segmentation with a pretrained ResNet50 and SegNet architecture. Extended this work to video segmentation for my master’s dissertation.',tags:'CNN / ResNet50 / SegNet'},
+  {n:'03',type:'COMPUTER VISION',title:'Connecting depth and semantics.',text:'Explored the relationship between depth estimation and semantic segmentation using encoder-decoder CNN models.',tags:'Deep learning / 2020'},
+  {n:'04',type:'EVOLUTIONARY COMPUTING',title:'Recreating pictures with 50 shapes.',text:'A genetic algorithm that evolves ellipses and rectangles to approximate an input image using roulette wheel selection.',tags:'Genetic algorithms / 2019'},
+  {n:'05',type:'SYSTEMS PROGRAMMING',title:'Building a shell from scratch.',text:'A C shell supporting internal and external commands, arguments, pipes, and redirections.',tags:'C / Unix / 2018'},
+  {n:'06',type:'MACHINE LEARNING',title:'Classifiers, from first principles.',text:'Binary and multi-class SVM classifiers with linear, polynomial, Gaussian, and sigmoid kernels, evaluated with K-fold cross-validation.',tags:'SVM / Classification / 2019'},
+];
+const photos = [
+ ['20190908_162500.jpg','A turquoise bay framed by cliffs'],
+ ['20201108_170240.jpg','Mountain peaks in the evening light'],
+ ['20230116_080208.jpg','A pink sky above the city'],
+ ['20200922_223500.jpg','A bridge crossing the night'],
+ ['20230409_173452.jpg','Sunset through branches'],
+ ['PXL_20230412_222955261.jpg','City architecture reaching into the sky'],
+];
+const galleryPhotos = [...photos, ...galleryFiles.filter(src => !photos.some(photo => photo[0] === src)).map(src => [src, 'Photography by Valeriu Prodan'])];
+function Arrow(){return <span aria-hidden="true">↗</span>}
+function Header({theme,setTheme}){return <header className="header"><Link className="brand" to="/" aria-label="Valeriu Prodan home"><img src="/favicon.ico" alt="Valeriu Prodan logo" /></Link><nav aria-label="Main navigation"><NavLink to="/" end>About</NavLink><NavLink to="/experience">Experience</NavLink><NavLink to="/projects">Projects</NavLink><NavLink to="/beyond-work">Beyond work</NavLink></nav><div className="header-actions"><button className="theme-toggle" type="button" aria-label="Dark mode" aria-pressed={theme==='dark'} title={`Switch to ${theme==='dark'?'light':'dark'} mode`} onClick={()=>setTheme(theme==='dark'?'light':'dark')}><span aria-hidden="true">{theme==='dark'?'☾':'☀'}</span><span>{theme==='dark'?'Dark':'Light'}</span></button><a className="contact-link" href="mailto:prodan.valeriu96@gmail.com">Let’s talk <Arrow/></a></div></header>}
+function Footer(){return <footer><div className="footer-top"><p>Have something interesting in mind?</p><a href="mailto:prodan.valeriu96@gmail.com">Let’s build something.<Arrow/></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Valeriu Prodan</span><div><a href={linkedin}>LinkedIn <Arrow/></a><a href={github}>GitHub <Arrow/></a><a href="/Valeriu-Prodan-CV.pdf" target="_blank" rel="noreferrer">CV <Arrow/></a></div><span>Made with curiosity. In Zürich.</span></div></footer>}
+function PageHeading({eyebrow,title,children}){return <div className="page-heading"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="intro">{children}</p></div>}
+function Home(){return <><section className="hero"><div className="hero-copy"><p className="eyebrow"><span className="small-dot"/> SOFTWARE & AI ENGINEER · ZÜRICH</p><h1>Turning ideas<br/>into <em>things<br/>that matter.</em></h1><p className="hero-description">I’m Valeriu. I build intelligent systems and software that make a measurable difference — from AI-powered shopping to products used at YouTube’s scale.</p><div className="hero-buttons"><Link className="button primary" to="/experience">Explore my work <Arrow/></Link><a className="button secondary" href="/Valeriu-Prodan-CV.pdf" target="_blank" rel="noreferrer">Read my CV ↓</a></div><div className="hero-footnote"><span>Previously at</span><b>Google</b><b>UiPath</b><b>Microsoft</b></div></div><div className="hero-image"><img src={portrait} alt="Valeriu Prodan beside a lake"/><div className="image-caption"><span>Engineer by trade.<br/>Curious by default.</span><span aria-hidden="true">✳</span></div><span className="portrait-index">01 / A LITTLE ABOUT ME</span></div></section><section className="impact-strip" aria-label="Selected career results"><div><strong>48<span>%</span></strong><p>less TPU consumption<br/>with a shopping LoRA adapter</p></div><div><strong>$0.5<span>B</span></strong><p>2024 revenue from YouTube<br/>Target Frequency</p></div><div><strong>1,000<span>+</span></strong><p>hours saved per customer,<br/>per month at UiPath</p></div></section><section className="about-section"><p className="eyebrow">01 — THE WAY I WORK</p><div><h2>Good engineering starts<br/>with the <em>right problem.</em></h2><p>I enjoy taking an idea all the way to a working product: understanding the problem, designing the system, and making sure it delivers in the real world.</p><p>My work spans machine learning, large-scale systems, and developer tools. I care about the details that turn a promising prototype into something people can depend on.</p><div className="skill-list">{['AI & machine learning','Product engineering','Large-scale systems','C++ / Python / C#'].map(t=><span key={t}>{t}</span>)}</div></div></section><section className="selected-section"><div className="section-title"><div><p className="eyebrow">02 — SELECTED EXPERIENCE</p><h2>A few chapters<br/>of the journey.</h2></div><Link className="text-link" to="/experience">Full experience <Arrow/></Link></div><div className="work-preview"><Link to="/experience#google"><span className="work-number">01</span><div><p className="eyebrow">GOOGLE · 2022–2026</p><h3>Intelligence at scale.</h3><p>Search Shopping AI & YouTube Ads</p></div><Arrow/></Link><Link to="/experience#uipath"><span className="work-number">02</span><div><p className="eyebrow">UIPATH · 2020–2022</p><h3>Less manual work.<br/>More possibility.</h3><p>Automation & developer tooling</p></div><Arrow/></Link></div></section><section className="beyond-teaser"><img src="/media/20190908_162500.jpg" alt="Turquoise water below coastal cliffs" loading="lazy"/><div><p className="eyebrow">03 — AWAY FROM THE KEYBOARD</p><h2>There’s more<br/>outside the editor.</h2><p>A camera, a surfboard, and a reason to get outside.</p><Link className="text-link" to="/beyond-work">Meet the other side of me <Arrow/></Link></div></section></>}
+function Experience(){return <><PageHeading eyebrow="THE PROFESSIONAL CHAPTER" title={<>Built with purpose.<br/><em>Measured by impact.</em></>}>A career across AI, advertising, automation, and systems engineering. Here’s what I worked on and what came out of it.</PageHeading><div className="career">{jobs.map((job,i)=><article className="career-row" id={job.company.toLowerCase()} key={job.company}><div className="career-meta"><span className="eyebrow">0{i+1} / {job.date}</span><h2>{job.company}</h2><p>{job.place}</p></div><div><h3>{job.role}</h3><p>{job.detail}</p>{job.points&&<ul>{job.points.map(p=><li key={p}>{p}</li>)}</ul>}<p className="tech">{job.tech}</p></div></article>)}</div><section className="education"><p className="eyebrow">THE FOUNDATION</p><h2>Always a student.</h2><div><article><span>2019 — 2021</span><h3>M.Sc. Artificial Intelligence</h3><p>Polytechnic University of Bucharest</p><p>Dissertation: video segmentation using convolutional neural networks.</p></article><article><span>2015 — 2019</span><h3>Computer Science & Engineering</h3><p>Polytechnic University of Bucharest</p><p>Thesis: image segmentation using convolutional neural networks.</p></article></div></section></>}
+function Projects(){return <><PageHeading eyebrow="EXPERIMENTS & EXPLORATIONS" title={<>Curiosity,<br/><em>put into code.</em></>}>Selected academic and personal projects. A few of the problems I’ve enjoyed getting lost in.</PageHeading><div className="project-grid">{projects.map(p=><article className="project-card" key={p.n}><div className="project-top"><span>{p.n}</span><span aria-hidden="true">{p.n==='04'?'◒':p.n==='05'?'>_':'✳'}</span></div><p className="eyebrow">{p.type}</p><h2>{p.title}</h2><p>{p.text}</p><span className="tech">{p.tags}</span></article>)}</div><div className="project-note"><p>More code, experiments, and things I’ve learned along the way.</p><a className="text-link" href={github}>Explore my GitHub <Arrow/></a></div></>}
+function Beyond(){return <><div className="beyond-content"><PageHeading eyebrow="BEYOND WORK" title={<>A different kind<br/>of <em>perspective.</em></>}>Away from the keyboard, I like finding new perspectives through photography and spending time on the water. These photographs are mine, mostly taken on my phone.</PageHeading><Gallery photos={galleryPhotos}/></div><SurfScene/></>}
+function SurfScene(){const video=useRef(null);const [sound,setSound]=useState(false);return <section className="surf-section"><div><p className="eyebrow">LESS SCREEN TIME. MORE SEA TIME.</p><h2>Finding my<br/><em>balance.</em></h2><p>Sometimes the best way to clear your head is to catch a wave.</p><span className="media-label">Real footage. Real me.</span></div><div className="surf-film"><video ref={video} autoPlay muted loop playsInline preload="metadata" poster="/media/surf-poster.jpg" src="/media/surfing.mp4" onVolumeChange={()=>setSound(!video.current.muted)} aria-label="Valeriu surfing"/></div><div className="surf-after"><button className="button surf-sound" onClick={()=>{const v=video.current;v.muted=!v.muted;setSound(!v.muted);v.play().catch(()=>{});}}>{sound?'Mute sound':'Turn on sound'} {sound?'♫':'♪'}</button></div></section>}
+function Secret(){const video=useRef(null);const [sound,setSound]=useState(false);useEffect(()=>{const tag=document.createElement('meta');tag.name='robots';tag.content='noindex, nofollow';document.head.appendChild(tag);document.body.classList.add('alternate-universe-page');return()=>{tag.remove();document.body.classList.remove('alternate-universe-page');};},[]);return <><section className="cinema-before"><p className="eyebrow">200 OK · CURIOSITY REWARDED</p><h1>If I weren’t a<br/>software engineer,<br/><em>I’d have been…</em></h1><p className="secret-subtitle">…a singer. At least in an alternate, AI-generated universe.</p></section><div className="secret cinema"><div className="secret-video"><video ref={video} src="/media/alternate-universe.mp4" poster="/media/singing-poster.jpg" autoPlay muted loop playsInline onVolumeChange={()=>setSound(!video.current.muted)} aria-label="AI-generated video of Valeriu singing"/><span className="media-label">AI-GENERATED · NOT A REAL PERFORMANCE</span></div></div><div className="cinema-after"><button className="button primary" onClick={()=>{const v=video.current;v.muted=!v.muted;setSound(!v.muted);v.play().catch(()=>{});}}>{sound?'Mute sound':'Turn on sound'} {sound?'♫':'♪'}</button><p>You found the side quest. Nicely done.</p><Link className="text-link" to="/">Back to the main story ←</Link></div></>}
+function App(){const [preference,setPreference]=useState(savedTheme);const [system,setSystem]=useState(systemTheme);const theme=preference||system;const location=useLocation();
+useEffect(()=>{
+  const update=()=>setSystem(systemTheme());
+  const queries=[];
+  try {
+    if(typeof window.matchMedia==='function'){
+      for(const mode of ['dark','light']){
+        const query=window.matchMedia(`(prefers-color-scheme: ${mode})`);
+        if(query.addEventListener)query.addEventListener('change',update);
+        else query.addListener?.(update);
+        queries.push(query);
+      }
+    }
+  } catch {}
+  update();
+  return()=>queries.forEach(query=>{
+    if(query.removeEventListener)query.removeEventListener('change',update);
+    else query.removeListener?.(update);
+  });
+},[]);
+useEffect(()=>{document.documentElement.dataset.theme=theme;},[theme]);
+useEffect(()=>{document.documentElement.dataset.palette='vest';try{localStorage.removeItem('vp-palette');}catch{}},[]);
+const setTheme=value=>{setPreference(value);try{localStorage.setItem('vp-theme',value);}catch{}};
+useEffect(()=>{const titles={'/':'Software & AI Engineer','/experience':'Experience','/projects':'Projects','/beyond-work':'Beyond work','/alternate-universe':'You found it'};document.title=`Valeriu Prodan — ${titles[location.pathname]||'Page not found'}`;if(location.hash){requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView());}else{window.scrollTo(0,0);}},[location]);return <><a className="skip-link" href="#main">Skip to content</a>{location.pathname!=='/alternate-universe'&&<Header theme={theme} setTheme={setTheme}/>}<main id="main" className={location.pathname==='/alternate-universe'?'cinema-main':location.pathname==='/beyond-work'?'beyond-main':undefined}><Routes><Route path="/" element={<Home/>}/><Route path="/experience" element={<Experience/>}/><Route path="/projects" element={<Projects/>}/><Route path="/beyond-work" element={<Beyond/>}/><Route path="/alternate-universe" element={<Secret/>}/><Route path="/profesional" element={<Navigate to="/experience" replace/>}/><Route path="/pictures" element={<Navigate to="/beyond-work" replace/>}/><Route path="/auth" element={<Navigate to="/" replace/>}/><Route path="/real-estate" element={<Navigate to="/projects" replace/>}/><Route path="*" element={<div className="secret"><p className="eyebrow">404</p><h1>A little off course.</h1><Link className="button primary" to="/">Back to home ←</Link></div>}/></Routes></main>{location.pathname!=='/alternate-universe'&&<Footer/>}</>}
 export default App;

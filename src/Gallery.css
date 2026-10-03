@@ -1,0 +1,313 @@
+.apartment-gallery .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.apartment-gallery .section-header h2 {
+  font-family: inherit;
+  color: var(--text);
+  font-size: clamp(35px, 4vw, 54px);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  margin-bottom: 1rem;
+}
+
+.apartment-gallery .section-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  margin: 0 auto 1rem;
+}
+
+.apartment-gallery .section-header p {
+  color: var(--muted);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+/* Gallery Section */
+.apartment-gallery .gallery-section {
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.apartment-gallery .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.apartment-gallery .gallery-item {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  transition: all 0.4s ease;
+}
+
+.apartment-gallery .gallery-item.featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.apartment-gallery .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.apartment-gallery .gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.apartment-gallery .gallery-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.apartment-gallery .gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+
+/* Gallery Preview Mode */
+.apartment-gallery .gallery-preview {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+}
+
+.apartment-gallery .gallery-preview .gallery-item.featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.apartment-gallery .gallery-more {
+  opacity: 1;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.apartment-gallery .gallery-more .more-count {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.apartment-gallery .gallery-more .more-text {
+  font-size: 1rem;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.apartment-gallery .gallery-item:hover .gallery-more {
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
+}
+
+.apartment-gallery .zoom-icon {
+  font-size: 2rem;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.apartment-gallery .gallery-item:hover .zoom-icon {
+  transform: scale(1);
+}
+
+/* Floor Plan Section */
+.apartment-gallery .lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Three viewport-wide slides (previous / current / next) that move together,
+   so a swipe brings the neighbouring photo in from the side. */
+.apartment-gallery .lightbox-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 300%;
+  height: 100%;
+  will-change: transform;
+}
+
+.apartment-gallery .lightbox-slide {
+  flex: 0 0 33.3333%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.apartment-gallery .lightbox-image {
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  animation: lightboxIn 0.3s ease;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Opacity only: the transform belongs to the zoom/pan state */
+@keyframes lightboxIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.apartment-gallery .lightbox-zoom {
+  position: absolute;
+  z-index: 2;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  cursor: default;
+}
+
+.apartment-gallery .lightbox-zoom button {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1.25rem;
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.apartment-gallery .lightbox-zoom button:hover:not(:disabled) {
+  color: var(--accent);
+}
+
+.apartment-gallery .lightbox-zoom button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.apartment-gallery .lightbox-zoom-level {
+  min-width: 3.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.apartment-gallery .lightbox-close {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  right: 30px;
+  font-size: 3rem;
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.apartment-gallery .lightbox-close:hover {
+  color: var(--accent);
+}
+
+.apartment-gallery .lightbox-prev,
+.apartment-gallery .lightbox-next {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  padding-bottom: 0.35rem; /* optically centre the chevron glyph */
+  font-size: 3rem;
+  color: var(--text);
+  /* A disc keeps the arrows legible over a light photo */
+  background: var(--surface);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.apartment-gallery .lightbox-prev {
+  left: 20px;
+}
+
+.apartment-gallery .lightbox-next {
+  right: 20px;
+}
+
+.apartment-gallery .lightbox-prev:hover,
+.apartment-gallery .lightbox-next:hover {
+  color: var(--accent);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.apartment-gallery .lightbox-counter {
+  position: absolute;
+  z-index: 2;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+/* Responsive */
+
+.apartment-gallery{font-family:inherit;padding:0 0 20px}
+.apartment-gallery .gallery-item{padding:0;background:none;border-radius:0;text-align:initial}
+.apartment-gallery .gallery-preview{grid-template-columns:repeat(5,1fr)}
+.apartment-gallery .gallery-preview .featured{grid-row:span 2;aspect-ratio:auto}
+.apartment-gallery .gallery-item:last-child{grid-column:span 2;aspect-ratio:8/3}
+.apartment-gallery .lightbox{padding:0}
+.apartment-gallery .lightbox button{position:static;padding:0;border:0;top:auto;right:auto}
+.apartment-gallery button.lightbox-close{position:absolute;top:20px;right:30px}
+.apartment-gallery button.lightbox-prev{position:absolute;top:50%;left:20px;padding-bottom:.35rem}
+.apartment-gallery button.lightbox-next{position:absolute;top:50%;right:20px;padding-bottom:.35rem}
+@media(max-width:768px){.apartment-gallery .gallery-preview{grid-template-columns:repeat(2,1fr)}.apartment-gallery .gallery-preview .featured{grid-column:span 2;grid-row:span 1;aspect-ratio:4/3}.apartment-gallery .lightbox-prev,.apartment-gallery .lightbox-next{width:2.75rem;height:2.75rem;font-size:2.25rem}.apartment-gallery button.lightbox-prev{left:10px}.apartment-gallery button.lightbox-next{right:10px}.apartment-gallery .more-count{font-size:2rem}}
+@media(max-width:480px){.apartment-gallery .lightbox-zoom{right:50%;transform:translateX(50%)}.apartment-gallery .lightbox-counter{bottom:88px}.apartment-gallery .more-count{font-size:1.75rem}}
