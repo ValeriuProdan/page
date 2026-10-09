@@ -12,7 +12,7 @@ html{scroll-behavior:smooth;scroll-padding-top:110px}body{background:var(--bg);c
 
 
 /* Immersive film scene, colored to match the burnt-orange studio backdrop. */
-body.alternate-universe-page{--cinema-edge:#783810;--cinema-top:#a9521d;background:var(--cinema-top);color:#fff3e5;}
+body.alternate-universe-page{--cinema-edge:#783810;--cinema-top:#ad501a;background:var(--cinema-top);color:#fff3e5;}
 main.cinema-main{max-width:none;padding:0;}
 .secret.cinema{position:relative;isolation:isolate;max-width:none;width:100%;height:100vh;height:100svh;min-height:0;padding:32px clamp(22px,4vw,64px);overflow:hidden;text-align:left;background:var(--cinema-top);--accent:#ffe0ad;--muted:#ffe0c3;--text:#fff3e5;}
 .cinema .secret-video{position:absolute;inset:0;max-width:none;margin:0;z-index:-2;}
@@ -67,4 +67,4 @@ main.beyond-main{max-width:none;padding:0;}
 @media(max-width:700px){.beyond-content{padding:0 22px;}.surf-section{margin-top:45px;}.surf-section>div:first-child{padding-top:48px;}}
 
 /* On phones, show both films whole at their natural aspect ratio instead of cropping them to fill the screen. */
-@media(max-width:700px){.surf-film{height:auto;}.surf-film video{height:auto;aspect-ratio:16/9;object-fit:contain;mask-image:linear-gradient(to bottom,transparent,black 6%);}.surf-film:after{background:linear-gradient(transparent 85%,var(--surf-edge));}.surf-after{padding-top:24px;}.secret.cinema{height:auto;padding:0;}.cinema .secret-video{position:relative;}.cinema .secret-video video{height:auto;aspect-ratio:16/9;object-fit:contain;mask-image:linear-gradient(to bottom,transparent,black 6%);}.cinema:after{background:linear-gradient(180deg,transparent 85%,var(--cinema-edge) 100%);}.cinema .secret-video .media-label{top:auto;bottom:12px;right:16px;}}
+@media(max-width:700px){.surf-film{height:auto;}.surf-film video{height:auto;aspect-ratio:16/9;object-fit:contain;mask-image:linear-gradient(to bottom,transparent,black 6%);}.surf-film:after{background:linear-gradient(transparent 85%,var(--surf-edge));}.surf-after{padding-top:24px;}.secret.cinema{height:auto;padding:0;}.cinema .secret-video{position:relative;}.cinema .secret-video video{height:auto;aspect-ratio:16/9;object-fit:contain;background:var(--cinema-top);mask-image:linear-gradient(to bottom,transparent,black 14%,black 86%,transparent);}.cinema:after{display:none;}main.cinema-main{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;}.cinema-after{flex:1;background:linear-gradient(var(--cinema-top),var(--cinema-edge) 75%);}.cinema .secret-video .media-label{top:auto;bottom:12px;right:16px;}}
