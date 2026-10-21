@@ -32,7 +32,7 @@ npm run build
 - `/experience`: career and education, based on the supplied CV.
 - `/projects`: selected academic and personal projects.
 - `/beyond-work`: local photography gallery and real surfing footage.
-- `/alternate-universe`: unlinked Easter egg featuring clearly labelled AI-generated singing. A comment in the HTML source reveals the route. It requests `noindex, nofollow`; it is publicly accessible, not an access-controlled page. Autoplay starts muted, with native controls and a sound button.
+- `/alternate-universe`: unlinked Easter egg featuring clearly labelled AI-generated singing. Two clues reveal the route: a `curiosity` meta tag visible in the page source, and a greeting in the browser console. It requests `noindex, nofollow`; it is publicly accessible, not an access-controlled page. Autoplay starts muted, with a round sound button.
 
 Old `/profesional`, `/pictures`, `/auth`, and `/real-estate` URLs redirect to relevant portfolio pages. The old authentication and Firebase-backed components remain in source for reference but are not imported by the active app. There are no Firebase requests or account requirements in the redesigned portfolio.
 
