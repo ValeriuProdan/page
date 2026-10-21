@@ -66,5 +66,14 @@ main.beyond-main{max-width:none;padding:0;}
 .cinema-sound{margin-top:24px;background:#622b16a6;border-color:#ffe0ad66;color:#fff3e5;backdrop-filter:blur(12px);}
 @media(max-width:700px){.beyond-content{padding:0 22px;}.surf-section{margin-top:45px;}.surf-section>div:first-child{padding-top:48px;}}
 
-/* On phones, show both films whole at their natural aspect ratio instead of cropping them to fill the screen. */
-@media(max-width:700px){.surf-film{height:auto;}.surf-film video{height:auto;aspect-ratio:16/9;object-fit:contain;mask-image:linear-gradient(to bottom,transparent,black 6%);}.surf-film:after{background:linear-gradient(transparent 85%,var(--surf-edge));}.surf-after{padding-top:24px;}.secret.cinema{height:auto;padding:0;}.cinema .secret-video{position:relative;}.cinema .secret-video video{height:auto;aspect-ratio:16/9;object-fit:contain;background:var(--cinema-top);mask-image:linear-gradient(to bottom,transparent,black 14%,black 86%,transparent);}.cinema:after{display:none;}main.cinema-main{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;}.cinema-after{flex:1;background:linear-gradient(var(--cinema-top),var(--cinema-edge) 75%);}.cinema .secret-video .media-label{top:auto;bottom:12px;right:16px;}}
+/* Show both films whole at their natural aspect ratio, never cropped: full width, capped at the screen height. */
+.surf-film{height:auto;}
+.surf-film video{height:auto;max-height:100vh;max-height:100svh;aspect-ratio:16/9;object-fit:contain;mask-image:linear-gradient(to bottom,transparent,black 6%);}
+.surf-film:after{background:linear-gradient(transparent 85%,var(--surf-edge));}
+.surf-after{padding-top:24px;}
+.secret.cinema{height:auto;padding:0;}
+.cinema .secret-video{position:relative;}
+.cinema .secret-video video{height:auto;max-height:100vh;max-height:100svh;aspect-ratio:16/9;object-fit:contain;background:var(--cinema-top);mask-image:linear-gradient(to bottom,transparent,black 14%,black 86%,transparent);}
+.cinema:after{display:none;}main.cinema-main{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;}
+.cinema-after{flex:1;background:linear-gradient(var(--cinema-top),var(--cinema-edge) 75%);}
+.cinema .secret-video .media-label{top:auto;bottom:12px;right:16px;}
