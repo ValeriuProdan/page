@@ -2,6 +2,7 @@ import { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
+import { routerFuture } from './routerFuture';
 
 let container, root;
 beforeEach(() => {
@@ -14,7 +15,7 @@ beforeEach(() => {
   root = createRoot(container);
 });
 afterEach(() => { act(() => root.unmount()); container.remove(); });
-function render(path = '/') { act(() => root.render(<MemoryRouter initialEntries={[path]}><App /></MemoryRouter>)); }
+function render(path = '/') { act(() => root.render(<MemoryRouter initialEntries={[path]} future={routerFuture}><App /></MemoryRouter>)); }
 test('public homepage has professional content without sign-in or a link to the secret', () => {
   render();
   expect(container.textContent).toContain('Turning ideas');
